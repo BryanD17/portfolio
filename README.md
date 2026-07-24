@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bryan Joseph, Portfolio
 
-## Getting Started
+Personal portfolio for Bryan Djenabia Joseph: software engineer, CS at San Diego
+State University. Live projects include StayFit (iOS, App Store), the StayFit
+marketing site, WebMARS (browser MIPS simulator), and a Java futures trading
+engine.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) with TypeScript strict mode
+- Tailwind CSS v4 with shadcn/ui components
+- Motion (Framer Motion) for the animation system
+- MDX for case studies
+- Resend for the contact form
+- Deployed on Vercel
+
+## Local setup
 
 ```bash
+npm install
+cp .env.example .env.local   # fill in real values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Scripts: `dev`, `build`, `typecheck`, `lint`, `format`, `sync:github`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Site copy lives in `src/content/` (typed TypeScript) and
+`content/case-studies/` (MDX). GitHub project data is fetched server-side and
+revalidated hourly.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`content/source/` holds owner-provided source material (resume PDF, raw assets)
+and is git-ignored. It is required for the resume download to build; the site
+still builds without it and hides the resume button.
