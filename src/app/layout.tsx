@@ -52,7 +52,7 @@ export default function RootLayout({
       { name: "WebMARS (org)", url: "https://github.com/Webmarssimulator/WebMARS" },
       { name: "SDSUMaps", url: "https://github.com/BryanD17/SDSUMaps" },
       { name: "webmars-api", url: "https://github.com/BryanD17/webmars-api" },
-      { name: "hateSpeechDetector.py", url: "https://github.com/BryanD17/hateSpeechDetector.py" },
+      { name: "hate-speech-detector", url: "https://github.com/BryanD17/hate-speech-detector" },
       { name: "Stock-Market-Predictor", url: "https://github.com/BryanD17/Stock-Market-Predictor" },
       { name: "NLP-Project", url: "https://github.com/BryanD17/NLP-Project" },
       { name: "Ai-reservation-bot", url: "https://github.com/BryanD17/Ai-reservation-bot" },

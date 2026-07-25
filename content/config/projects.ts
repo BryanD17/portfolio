@@ -53,7 +53,8 @@ export const projectOverrides: ProjectOverride[] = [
     liveUrl: "https://webmarsimulator.com",
   },
   {
-    name: "hateSpeechDetector.py",
+    // Renamed from hateSpeechDetector.py in Agent 14 (a repo is not a file).
+    name: "hate-speech-detector",
     tier: "featured",
     description: "A classifier that flags hate speech in input text.",
     badges: ["EARLY WORK"],
@@ -79,6 +80,12 @@ export const projectOverrides: ProjectOverride[] = [
 
   /* hidden */
   {
+    name: "BryanD17",
+    tier: "hidden",
+    badges: [],
+    hiddenReason: "Profile README repository, not a project.",
+  },
+  {
     name: "portfolio",
     tier: "hidden",
     badges: [],
@@ -88,7 +95,8 @@ export const projectOverrides: ProjectOverride[] = [
     name: "Basic-Guessing-Game",
     tier: "hidden",
     badges: [],
-    hiddenReason: "Empty repository (0 KB, 2020); pending Agent 14 resolution.",
+    hiddenReason:
+      "First-program repo from 2020 (20-line guessing game); cleaned up in Agent 14 (file renamed to .py, README added) but not portfolio material.",
   },
   {
     name: "Bryan-Portfolio",
