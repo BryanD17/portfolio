@@ -173,6 +173,20 @@
   }
 }
 
+/*
+  Reduced-motion backstop. Server rendering cannot know the client's motion
+  preference, so entrance animations can leave opacity/transform inline
+  styles in the SSR HTML. This rule guarantees any element marked as a
+  reveal target renders at its final state for reduced-motion users, no
+  matter what inline style hydration left behind.
+*/
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @layer utilities {
   /* terminal block cursor blink; fully static under reduced motion */
   .cursor-blink {

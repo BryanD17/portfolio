@@ -21,11 +21,16 @@ export function RevealOnScroll({ delay = 0, distance = 24, className, children }
   const { reduced } = useReducedMotionSafe();
 
   if (reduced) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div data-reveal className={className}>
+        {children}
+      </div>
+    );
   }
 
   return (
     <motion.div
+      data-reveal
       className={className}
       initial={{ opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
