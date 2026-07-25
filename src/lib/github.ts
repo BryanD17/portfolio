@@ -198,6 +198,30 @@ export async function fetchAuthoredCommitCount(fullName: string): Promise<number
   return commits.length;
 }
 
+/**
+ * Byte counts per language across the account's ORIGINAL public repos
+ * (forks excluded; upstream code would inflate the picture). The skills
+ * section renders these with a visible caveat: StayFit's 80,000+ lines of
+ * Swift live in a private repo and are absent here by design.
+ */
+export async function getPublicLanguageBytes(): Promise<Record<string, number>> {
+  const repos = await fetchPublicRepos();
+  if (!repos) return {};
+  const totals: Record<string, number> = {};
+  for (const repo of repos.filter((r) => !r.fork)) {
+    const langs = await fetchRepoLanguages(repo.fullName);
+    if (!langs) continue;
+    for (const [lang, bytes] of Object.entries(langs)) {
+      totals[lang] = (totals[lang] ?? 0) + bytes;
+    }
+  }
+  return totals;
+}
+
+export function languageColor(name: string): string {
+  return LANGUAGE_COLORS[name] ?? "var(--fg-subtle)";
+}
+
 function readSnapshot(): { repos: RepoData[]; fetchedAt: string } | null {
   try {
     const raw = fs.readFileSync(SNAPSHOT_PATH, "utf8");

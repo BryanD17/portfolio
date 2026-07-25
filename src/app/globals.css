@@ -187,6 +187,12 @@
   }
 }
 
+/* Skill-chip hover: linked project cards light up elsewhere on the page. */
+.skill-highlight {
+  box-shadow: inset 0 0 0 1px var(--accent);
+  border-radius: var(--radius-lg);
+}
+
 @layer utilities {
   /* terminal block cursor blink; fully static under reduced motion */
   .cursor-blink {
