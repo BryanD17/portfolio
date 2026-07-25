@@ -34,9 +34,18 @@ export function ScrollLinked({
   const { reduced } = useReducedMotionSafe();
   const { scrollYProgress } = useScroll({ target: ref, offset });
 
-  const yValue = useTransform(scrollYProgress, [0, 1], y ?? [0, 0]);
-  const opacityValue = useTransform(scrollYProgress, [0, 1], opacity ?? [1, 1]);
-  const scaleValue = useTransform(scrollYProgress, [0, 1], scale ?? [1, 1]);
+  // Callback-form useTransform: with motion 12.42 the array form silently
+  // drops a style binding whose initial output equals the CSS default (e.g.
+  // opacity 1 at progress 0), so the value never updates. The callback form
+  // subscribes reliably; keep it for all three channels.
+  const lerp = (range: Range | undefined, fallback: number) => {
+    if (!range) return fallback;
+    const p = scrollYProgress.get();
+    return range[0] + (range[1] - range[0]) * p;
+  };
+  const yValue = useTransform(() => lerp(y, 0));
+  const opacityValue = useTransform(() => lerp(opacity, 1));
+  const scaleValue = useTransform(() => lerp(scale, 1));
 
   if (reduced) {
     return (
