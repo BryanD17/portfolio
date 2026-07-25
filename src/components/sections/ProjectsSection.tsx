@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { getCaseStudies, getProjectOverrides } from "@/content";
 import { getAllProjects } from "@/lib/github";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -73,16 +72,14 @@ export async function ProjectsSection({
           title="The work"
           description="Every repository on the account, plus the four flagship projects the public API cannot see. Live data, revalidated hourly."
         />
-        <Suspense>
-          <ProjectsExplorer
-            caseStudies={caseStudies}
-            projects={projects}
-            snapshotNote={sync.source === "snapshot"}
-            showFilters={showFilters}
-            archiveDefaultOpen={archiveDefaultOpen}
-            bandHeading={headingAs === "h1" ? "h2" : "h3"}
-          />
-        </Suspense>
+        <ProjectsExplorer
+          caseStudies={caseStudies}
+          projects={projects}
+          snapshotNote={sync.source === "snapshot"}
+          showFilters={showFilters}
+          archiveDefaultOpen={archiveDefaultOpen}
+          bandHeading={headingAs === "h1" ? "h2" : "h3"}
+        />
       </div>
     </section>
   );
