@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { SPRING_SOFT, STAGGER, cappedStagger, DURATION, EASE_OUT } from "@/lib/motion";
 import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
@@ -25,6 +25,11 @@ interface ProjectsExplorerProps {
 
 type SortKey = "updated" | "stars" | "oldest" | "az";
 
+function subscribePopstate(callback: () => void) {
+  window.addEventListener("popstate", callback);
+  return () => window.removeEventListener("popstate", callback);
+}
+
 export function ProjectsExplorer({
   caseStudies,
   projects,
@@ -36,22 +41,39 @@ export function ProjectsExplorer({
   const { reduced } = useReducedMotionSafe();
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [archiveOpen, setArchiveOpen] = useState(archiveDefaultOpen);
 
-  const q = searchParams.get("q") ?? "";
-  const lang = searchParams.get("lang") ?? "all";
-  const origin = searchParams.get("origin") ?? "all";
-  const sort = (searchParams.get("sort") as SortKey) ?? "updated";
+  // Filter state lives in React and mirrors into the URL. Reading
+  // location.search via useSyncExternalStore (instead of useSearchParams)
+  // keeps this page fully server-rendered: no Suspense CSR bailout, no
+  // hydration pop-in. User changes override the URL snapshot immediately.
+  const urlSearch = useSyncExternalStore(
+    subscribePopstate,
+    () => window.location.search,
+    () => ""
+  );
+  const [override, setOverride] = useState<URLSearchParams | null>(null);
+  const params = override ?? new URLSearchParams(urlSearch);
+  const setParams = (updater: (prev: URLSearchParams) => URLSearchParams) =>
+    setOverride((prev) => updater(prev ?? new URLSearchParams(window.location.search)));
+
+  const q = params?.get("q") ?? "";
+  const lang = params?.get("lang") ?? "all";
+  const origin = params?.get("origin") ?? "all";
+  const sort = (params?.get("sort") as SortKey) ?? "updated";
 
   const setParam = useCallback(
     (key: string, value: string, defaultValue: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (value === defaultValue) params.delete(key);
-      else params.set(key, value);
-      router.replace(`${pathname}${params.size ? `?${params}` : ""}`, { scroll: false });
+      setParams((prev) => {
+        const next = new URLSearchParams(prev);
+        if (value === defaultValue) next.delete(key);
+        else next.set(key, value);
+        router.replace(`${pathname}${next.size ? `?${next}` : ""}`, { scroll: false });
+        return next;
+      });
     },
-    [router, pathname, searchParams]
+     
+    [router, pathname]
   );
 
   const languages = useMemo(
@@ -100,6 +122,7 @@ export function ProjectsExplorer({
     : caseStudies;
 
   const clearFilters = () => {
+    setOverride(new URLSearchParams());
     router.replace(pathname, { scroll: false });
   };
 

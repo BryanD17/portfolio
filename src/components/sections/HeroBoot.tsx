@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Terminal } from "@/components/ui/Terminal";
 import { Prompt } from "@/components/ui/Prompt";
 import { Cursor } from "@/components/ui/Cursor";
@@ -44,6 +44,14 @@ export function HeroBoot({ bootLines, headline, stats, resumeAvailable = false }
   const [stage, setStage] = useState(0);
   const [headlineFired, setHeadlineFired] = useState(false);
 
+  // Server HTML shows the COMPLETE terminal so the largest contentful paint
+  // happens at first paint; the boot choreography replays from a layout
+  // effect at hydration (same pattern as SplitText and TypeLine).
+  const [hydrated, setHydrated] = useState(false);
+  const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+  useIso(() => setHydrated(true), []);
+  const booting = hydrated && !reduced;
+
   const headlineLineIndex = bootLines.findIndex((l) => l.command === "cat headline.txt");
   const advance = (i: number) => {
     setStage((s) => Math.max(s, i + 1));
@@ -52,17 +60,29 @@ export function HeroBoot({ bootLines, headline, stats, resumeAvailable = false }
     }
   };
 
+  // THE MOTION SPEC caps the boot at 2.5s total. On slow devices where
+  // throttled JS drags the typing out, this failsafe completes the boot and
+  // fires the headline at the cap rather than letting it drift.
+  useEffect(() => {
+    if (reduced) return;
+    const cap = setTimeout(() => {
+      setStage(bootLines.length);
+      setHeadlineFired(true);
+    }, 2500);
+    return () => clearTimeout(cap);
+  }, [reduced, bootLines.length]);
+
   return (
     <div className="flex flex-col gap-8">
       <Terminal title="bryan@portfolio: ~">
         {bootLines.map((line, i) => (
-          <div key={line.command} className={!reduced && stage < i ? "invisible" : undefined}>
+          <div key={line.command} className={booting && stage < i ? "invisible" : undefined}>
             <p>
               <Prompt />
               <TypeLine text={line.command} start={reduced || stage >= i} seed={i + 1} onDone={() => advance(i)} />
-              {!reduced && stage === i ? <Cursor /> : null}
+              {booting && stage === i ? <Cursor /> : null}
             </p>
-            <div className={!reduced && stage <= i ? "invisible" : undefined}>
+            <div className={booting && stage <= i ? "invisible" : undefined}>
               {line.output.map((out) => (
                 <p key={out} className="whitespace-pre-wrap text-fg-muted">
                   {out}
@@ -71,7 +91,7 @@ export function HeroBoot({ bootLines, headline, stats, resumeAvailable = false }
             </div>
           </div>
         ))}
-        <div className={!reduced && stage < bootLines.length ? "invisible" : undefined}>
+        <div className={booting && stage < bootLines.length ? "invisible" : undefined}>
           <TerminalInput resumeAvailable={resumeAvailable} />
         </div>
       </Terminal>

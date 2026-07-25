@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { SPRING_SOFT, STAGGER, cappedStagger } from "@/lib/motion";
@@ -40,7 +40,15 @@ export function SplitText({
   );
   const step = per === "word" ? STAGGER.tight : STAGGER.base;
 
-  if (reduced) {
+  // Server HTML renders the text fully VISIBLE so the largest contentful
+  // paint happens at first paint, not at hydration. The animated structure
+  // swaps in during a layout effect (before that commit paints), then the
+  // wipe plays as choreographed.
+  const [hydrated, setHydrated] = useState(false);
+  const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+  useIso(() => setHydrated(true), []);
+
+  if (reduced || !hydrated) {
     return <Tag className={cn("whitespace-pre-line", className)}>{text}</Tag>;
   }
 

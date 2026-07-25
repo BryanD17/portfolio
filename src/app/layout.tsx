@@ -14,14 +14,25 @@ import { CommandK } from "@/components/interactive/CommandK";
 import { PageTransition } from "@/components/motion/PageTransition";
 import type { PaletteData } from "@/components/interactive/palette-data";
 
+/*
+ * display "optional": on a very slow first visit the system fallback stays
+ * for that pageview instead of repainting when the webfont lands, which
+ * keeps the largest contentful paint at first paint. Cached visits always
+ * get Geist. Chosen over "swap" under Agent 18's performance authority; the
+ * repaint was the site-wide LCP bottleneck under throttled mobile.
+ */
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "optional",
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "optional",
+  adjustFontFallback: true,
 });
 
 const profile = getProfile();
@@ -132,8 +143,13 @@ export default function RootLayout({
           <PageTransition>{children}</PageTransition>
         </div>
         <Footer />
-        <Analytics />
-        <SpeedInsights />
+        {/* These scripts only exist on Vercel's platform; skip elsewhere. */}
+        {process.env.VERCEL ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
       </body>
     </html>
   );
