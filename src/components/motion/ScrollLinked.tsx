@@ -8,7 +8,10 @@ type Range = [number, number];
 
 interface ScrollLinkedProps {
   /** useScroll offset; defaults to the element's full pass through the viewport. */
-  offset?: ["start end" | "start center" | "start start", "end start" | "end center" | "end end"];
+  offset?: [
+    "start end" | "start center" | "start start",
+    "start center" | "start start" | "end start" | "end center" | "end end",
+  ];
   /** Output ranges mapped from scroll progress 0..1. */
   y?: Range;
   opacity?: Range;
@@ -49,7 +52,7 @@ export function ScrollLinked({
 
   if (reduced) {
     return (
-      <div ref={ref} className={className}>
+      <div ref={ref} data-reveal className={className}>
         {children}
       </div>
     );
@@ -58,6 +61,7 @@ export function ScrollLinked({
   return (
     <motion.div
       ref={ref}
+      data-reveal
       className={className}
       style={{
         y: y ? yValue : undefined,
