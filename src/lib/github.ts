@@ -65,6 +65,10 @@ export interface SyncResult {
   source: "live" | "snapshot";
   fetchedAt: string;
   rateLimitRemaining: number | null;
+  /** True count of the account's public repos, before any hiding. */
+  publicRepoCount: number;
+  /** Most recent push across ALL fetched repos, before any hiding. */
+  lastPushedAt: string | null;
 }
 
 let lastRateLimitRemaining: number | null = null;
@@ -267,7 +271,15 @@ export async function getAllProjects(): Promise<SyncResult> {
   if (publicRepos === null) {
     const snapshot = readSnapshot();
     if (!snapshot) {
-      return { projects: [], hidden: [], source: "snapshot", fetchedAt: "", rateLimitRemaining: lastRateLimitRemaining };
+      return {
+        projects: [],
+        hidden: [],
+        source: "snapshot",
+        fetchedAt: "",
+        rateLimitRemaining: lastRateLimitRemaining,
+        publicRepoCount: 0,
+        lastPushedAt: null,
+      };
     }
     repos = snapshot.repos;
     source = "snapshot";
@@ -320,5 +332,19 @@ export async function getAllProjects(): Promise<SyncResult> {
     return new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime();
   });
 
-  return { projects, hidden, source, fetchedAt, rateLimitRemaining: lastRateLimitRemaining };
+  const publicRepoCount = repos.filter((r) => !r.private && r.owner === USERNAME).length;
+  const lastPushedAt = repos.reduce<string | null>(
+    (latest, r) => (!latest || r.pushedAt > latest ? r.pushedAt : latest),
+    null
+  );
+
+  return {
+    projects,
+    hidden,
+    source,
+    fetchedAt,
+    rateLimitRemaining: lastRateLimitRemaining,
+    publicRepoCount,
+    lastPushedAt,
+  };
 }
