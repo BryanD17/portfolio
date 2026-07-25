@@ -1,0 +1,78 @@
+---
+slug: webmars
+title: WebMARS, Browser-Based MIPS Assembler & Simulator
+tagline: "A complete MIPS32 toolchain that runs entirely in your browser."
+role: Core-engine lead
+stack:
+  - TypeScript (strict)
+  - React
+  - Vite
+  - Zustand
+  - Vitest
+  - GitHub Actions
+status: Live in production at webmarsimulator.com
+liveUrl: https://webmarsimulator.com
+repoUrl: https://github.com/Webmarssimulator/WebMARS
+repoVisibility: org
+metrics:
+  - value: 15000
+    suffix: "+"
+    label: lines of strict TypeScript
+  - value: 50
+    prefix: "~"
+    label: MIPS instructions
+  - value: 100
+    suffix: "+"
+    label: unit and integration tests
+  - value: 0
+    label: installs required
+outcomes:
+  - Live in production at webmarsimulator.com
+  - "Zero-install: works on any machine with a browser, including locked-down lab and school hardware"
+  - 100+ tests gating CI on every pull request
+links:
+  - label: webmarsimulator.com
+    href: https://webmarsimulator.com
+  - label: Core repo (Webmarssimulator org)
+    href: https://github.com/Webmarssimulator/WebMARS
+attributionNote: "WebMARS is a collaborative project owned by the Webmarssimulator organization, built with a team. My role: core-engine lead. Nothing on this page claims sole authorship."
+order: 3
+gallery: []
+---
+
+## The problem
+
+Every computer architecture student needs MARS, and MARS is a Java desktop
+application from another era: you install a JAR, you fight your JDK, and on a
+Chromebook or a locked-down lab machine you simply can't. The tooling is a
+barrier to a subject that's hard enough already.
+
+## What I built
+
+I led core-engine development on a full MIPS32 toolchain running entirely
+in-browser: a lexer, a two-pass assembler covering roughly 50 instructions
+plus pseudo-instructions, an FPU, and trap handling. 15,000+ lines of strict
+TypeScript, deployed live to production.
+
+## The hard parts
+
+### A time-travel debugger
+
+I architected a clean core/UI split, a pure-TypeScript engine behind a Zustand
+store, which made a time-travel debugger possible: rewinding register, FPU,
+and memory state through a circular snapshot history. Being able to step
+backwards through a program is the single most useful thing you can give
+someone learning assembly.
+
+### Correctness under test
+
+I wrote 100+ unit and integration tests in Vitest gating every pull request
+through GitHub Actions CI. They caught sign-extension and address-resolution
+edge cases across the instruction set, the class of bug that silently
+produces wrong answers instead of crashing.
+
+### Keeping the engine pure
+
+Putting the engine behind a store rather than inside the components is why
+the debugger, the tests, and the visualizations were all possible without
+rewrites. It's the decision the whole project rests on.

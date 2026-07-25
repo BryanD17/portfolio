@@ -1,0 +1,75 @@
+---
+slug: stayfit
+title: StayFit, AI Health & Fitness
+tagline: "80,000 lines of Swift, live on the App Store."
+role: Solo developer, covering design, architecture, implementation, App Store submission and review
+stack:
+  - Swift
+  - SwiftUI
+  - Combine
+  - Apple Vision
+  - HealthKit
+  - WidgetKit
+  - watchOS
+  - Supabase
+  - PostgreSQL
+  - Stripe Connect
+  - OpenAI APIs
+status: Live on the App Store
+repoVisibility: private
+metrics:
+  - value: 80000
+    suffix: "+"
+    label: lines of Swift
+  - value: 260
+    suffix: "+"
+    label: source files
+  - value: 58
+    label: services
+  - value: 12
+    label: Supabase edge functions
+outcomes:
+  - Shipped and live on the App Store
+  - Passed Apple App Store review
+  - "Full companion experience: Apple Watch app and home-screen widgets"
+links: []
+gallery: []
+order: 1
+---
+
+## The problem
+
+Fitness apps ask you to trust that you're doing the movement correctly. They
+count reps; they don't watch your form. And almost all of them fall over the
+moment you walk into a gym basement with no signal, which is exactly where
+people use them.
+
+## What I built
+
+A native iOS application spanning workout and nutrition tracking, a social
+feed, a creator marketplace with real payouts, an Apple Watch companion, and
+home-screen widgets. 80,000+ lines of Swift across 260+ files, organized as 58
+services behind an MVVM + Combine architecture.
+
+## The hard parts
+
+### Real-time form check, on device
+
+I built an exercise form-check engine on Apple's Vision framework that scores
+live body-pose and joint angles on-device to give instant coaching feedback.
+Running it on-device rather than in the cloud meant feedback arrives fast
+enough to correct a rep while it's happening, and no video ever leaves the
+phone.
+
+### Offline-first sync
+
+Gyms have terrible signal, so the app assumes the network is gone. I built a
+persisted mutation queue with last-write-wins conflict resolution, so a full
+workout logged in a basement reconciles cleanly the moment connectivity
+returns.
+
+### Payments, AI, and rewards on the edge
+
+12 Supabase/PostgreSQL edge functions power Stripe Connect payouts to
+creators, AI chat, and referral rewards, keeping payment logic and API keys
+off the client entirely.
