@@ -10,35 +10,23 @@
       "fork": false,
       "archived": false,
       "private": false,
-      "size": 0,
+      "size": 313,
       "stargazersCount": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-07-25T00:36:10Z",
+      "pushedAt": "2026-07-25T01:41:06Z",
       "createdAt": "2026-07-24T23:55:40Z",
-      "topics": []
-    },
-    {
-      "name": "webmars-api",
-      "fullName": "BryanD17/webmars-api",
-      "owner": "BryanD17",
-      "description": null,
-      "htmlUrl": "https://github.com/BryanD17/webmars-api",
-      "homepage": null,
-      "fork": true,
-      "archived": false,
-      "private": false,
-      "size": 145,
-      "stargazersCount": 0,
-      "language": null,
-      "pushedAt": "2026-07-11T02:17:28Z",
-      "createdAt": "2026-07-11T02:07:31Z",
-      "topics": []
+      "topics": [
+        "nextjs",
+        "portfolio",
+        "tailwindcss",
+        "typescript"
+      ]
     },
     {
       "name": "SDSUMaps",
       "fullName": "BryanD17/SDSUMaps",
       "owner": "BryanD17",
-      "description": "Group 4 - SDSUMaps",
+      "description": "Campus mapping app for San Diego State, built with a four-person team. Fork of mlong5/SDSUMaps.",
       "htmlUrl": "https://github.com/BryanD17/SDSUMaps",
       "homepage": null,
       "fork": true,
@@ -52,28 +40,28 @@
       "topics": []
     },
     {
-      "name": "Stock-Market-Predictor",
-      "fullName": "BryanD17/Stock-Market-Predictor",
+      "name": "webmars-api",
+      "fullName": "BryanD17/webmars-api",
       "owner": "BryanD17",
-      "description": null,
-      "htmlUrl": "https://github.com/BryanD17/Stock-Market-Predictor",
+      "description": "Fork of landclay715/webmars-api: the API component of WebMARS (webmarsimulator.com).",
+      "htmlUrl": "https://github.com/BryanD17/webmars-api",
       "homepage": null,
-      "fork": false,
+      "fork": true,
       "archived": false,
       "private": false,
-      "size": 9,
-      "stargazersCount": 1,
-      "language": "Python",
-      "pushedAt": "2023-08-02T04:48:24Z",
-      "createdAt": "2023-08-02T04:46:40Z",
+      "size": 145,
+      "stargazersCount": 0,
+      "language": null,
+      "pushedAt": "2026-07-11T02:17:28Z",
+      "createdAt": "2026-07-11T02:07:31Z",
       "topics": []
     },
     {
-      "name": "Basic-Guessing-Game",
-      "fullName": "BryanD17/Basic-Guessing-Game",
+      "name": "BryanD17",
+      "fullName": "BryanD17/BryanD17",
       "owner": "BryanD17",
-      "description": null,
-      "htmlUrl": "https://github.com/BryanD17/Basic-Guessing-Game",
+      "description": "Profile README",
+      "htmlUrl": "https://github.com/BryanD17/BryanD17",
       "homepage": null,
       "fork": false,
       "archived": false,
@@ -81,36 +69,19 @@
       "size": 0,
       "stargazersCount": 0,
       "language": null,
-      "pushedAt": "2020-11-09T02:40:17Z",
-      "createdAt": "2020-11-09T02:34:00Z",
-      "topics": []
-    },
-    {
-      "name": "Ai-reservation-bot",
-      "fullName": "BryanD17/Ai-reservation-bot",
-      "owner": "BryanD17",
-      "description": null,
-      "htmlUrl": "https://github.com/BryanD17/Ai-reservation-bot",
-      "homepage": null,
-      "fork": false,
-      "archived": false,
-      "private": false,
-      "size": 49,
-      "stargazersCount": 0,
-      "language": null,
-      "pushedAt": "2025-07-01T23:01:30Z",
-      "createdAt": "2025-06-24T00:42:19Z",
+      "pushedAt": "2026-07-25T01:34:13Z",
+      "createdAt": "2026-07-25T01:34:10Z",
       "topics": []
     },
     {
       "name": "Bryan-Portfolio",
       "fullName": "BryanD17/Bryan-Portfolio",
       "owner": "BryanD17",
-      "description": null,
+      "description": "Legacy 2023 portfolio site, superseded by the current one at github.com/BryanD17/portfolio.",
       "htmlUrl": "https://github.com/BryanD17/Bryan-Portfolio",
       "homepage": null,
       "fork": false,
-      "archived": false,
+      "archived": true,
       "private": false,
       "size": 40,
       "stargazersCount": 0,
@@ -120,11 +91,11 @@
       "topics": []
     },
     {
-      "name": "hateSpeechDetector.py",
-      "fullName": "BryanD17/hateSpeechDetector.py",
+      "name": "hate-speech-detector",
+      "fullName": "BryanD17/hate-speech-detector",
       "owner": "BryanD17",
-      "description": "The code will detect if the sentences that are input are hate speech",
-      "htmlUrl": "https://github.com/BryanD17/hateSpeechDetector.py",
+      "description": "A classifier that flags hate speech in input text. Python and NLTK, class project, 2023.",
+      "htmlUrl": "https://github.com/BryanD17/hate-speech-detector",
       "homepage": null,
       "fork": false,
       "archived": false,
@@ -134,13 +105,59 @@
       "language": "Python",
       "pushedAt": "2023-03-22T03:16:22Z",
       "createdAt": "2023-03-22T02:35:12Z",
-      "topics": []
+      "topics": [
+        "nlp",
+        "python",
+        "text-classification"
+      ]
+    },
+    {
+      "name": "Basic-Guessing-Game",
+      "fullName": "BryanD17/Basic-Guessing-Game",
+      "owner": "BryanD17",
+      "description": "My first program: a three-guess name game in Python. 2020.",
+      "htmlUrl": "https://github.com/BryanD17/Basic-Guessing-Game",
+      "homepage": null,
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "size": 0,
+      "stargazersCount": 0,
+      "language": "Python",
+      "pushedAt": "2026-07-25T01:33:44Z",
+      "createdAt": "2020-11-09T02:34:00Z",
+      "topics": [
+        "beginner",
+        "first-project",
+        "python"
+      ]
+    },
+    {
+      "name": "Ai-reservation-bot",
+      "fullName": "BryanD17/Ai-reservation-bot",
+      "owner": "BryanD17",
+      "description": "Placeholder for an AI reservation bot. No code committed yet.",
+      "htmlUrl": "https://github.com/BryanD17/Ai-reservation-bot",
+      "homepage": null,
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "size": 49,
+      "stargazersCount": 0,
+      "language": null,
+      "pushedAt": "2026-07-25T01:33:28Z",
+      "createdAt": "2025-06-24T00:42:19Z",
+      "topics": [
+        "bot",
+        "placeholder",
+        "work-in-progress"
+      ]
     },
     {
       "name": "NLP-Project",
       "fullName": "BryanD17/NLP-Project",
       "owner": "BryanD17",
-      "description": null,
+      "description": "SVM hate speech classifier using NLTK and scikit-learn. Python class project, 2023.",
       "htmlUrl": "https://github.com/BryanD17/NLP-Project",
       "homepage": null,
       "fork": false,
@@ -151,7 +168,34 @@
       "language": "Python",
       "pushedAt": "2023-03-20T14:01:22Z",
       "createdAt": "2023-03-15T14:43:30Z",
-      "topics": []
+      "topics": [
+        "nlp",
+        "python",
+        "scikit-learn",
+        "svm"
+      ]
+    },
+    {
+      "name": "Stock-Market-Predictor",
+      "fullName": "BryanD17/Stock-Market-Predictor",
+      "owner": "BryanD17",
+      "description": "Linear regression model forecasting Rivian stock against Tesla and Nio comparables. Python class project, 2023.",
+      "htmlUrl": "https://github.com/BryanD17/Stock-Market-Predictor",
+      "homepage": null,
+      "fork": false,
+      "archived": false,
+      "private": false,
+      "size": 9,
+      "stargazersCount": 1,
+      "language": "Python",
+      "pushedAt": "2023-08-02T04:48:24Z",
+      "createdAt": "2023-08-02T04:46:40Z",
+      "topics": [
+        "linear-regression",
+        "machine-learning",
+        "python",
+        "stock-prediction"
+      ]
     },
     {
       "name": "WebMARS",
@@ -171,5 +215,5 @@
       "topics": []
     }
   ],
-  "fetchedAt": "2026-07-25T01:39:35.111Z"
+  "fetchedAt": "2026-07-25T01:46:33.861Z"
 }

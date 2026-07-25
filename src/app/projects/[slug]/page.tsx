@@ -25,11 +25,32 @@ export async function generateMetadata({
   const { slug } = await params;
   const study = getCaseStudy(slug);
   if (!study) return {};
+  const og = `/og?slug=${study.frontmatter.slug}`;
   return {
     title: study.frontmatter.title,
     description: study.frontmatter.tagline,
+    alternates: { canonical: `/projects/${study.frontmatter.slug}` },
+    openGraph: {
+      type: "article",
+      title: study.frontmatter.title,
+      description: study.frontmatter.tagline,
+      images: [{ url: og, width: 1200, height: 630, alt: study.frontmatter.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: study.frontmatter.title,
+      description: study.frontmatter.tagline,
+      images: [og],
+    },
   };
 }
+
+/** SoftwareApplication JSON-LD for the shipped products. */
+const APP_JSONLD: Record<string, { category: string; os?: string; url: string }> = {
+  stayfit: { category: "HealthApplication", os: "iOS", url: "https://getstayfitapp.com" },
+  "stayfit-website": { category: "WebApplication", url: "https://getstayfitapp.com" },
+  webmars: { category: "DeveloperApplication", url: "https://webmarsimulator.com" },
+};
 
 /** Split the MDX body on ## headings so each section gets its own reveal. */
 function splitSections(body: string): { heading: string; content: string }[] {
@@ -76,8 +97,27 @@ export default async function CaseStudyPage({
     ...(fm.links.length > 0 ? [{ id: "links", label: "Links" }] : []),
   ];
 
+  const appMeta = APP_JSONLD[fm.slug];
+
   return (
     <main className="relative">
+      {appMeta ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: fm.title,
+              description: fm.tagline,
+              applicationCategory: appMeta.category,
+              ...(appMeta.os ? { operatingSystem: appMeta.os } : {}),
+              url: appMeta.url,
+              author: { "@type": "Person", name: "Bryan Djenabia Joseph" },
+            }),
+          }}
+        />
+      ) : null}
       <ReadingProgress />
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-16 sm:px-8">
         <Link

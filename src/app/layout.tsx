@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import { getCaseStudies, getExperience, getProfile } from "@/content";
+import { getCaseStudies, getExperience, getProfile, getSkills } from "@/content";
+import { SITE_URL } from "@/lib/site";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { ThemeToggle } from "@/components/interactive/ThemeToggle";
@@ -24,12 +27,49 @@ const geistMono = Geist_Mono({
 const profile = getProfile();
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Bryan Joseph",
     template: "%s · Bryan Joseph",
   },
   description: profile.metaDescription,
+  authors: [{ name: profile.fullName, url: SITE_URL }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Bryan Joseph",
+    title: "Bryan Joseph",
+    description: profile.metaDescription,
+    images: [{ url: "/og", width: 1200, height: 630, alt: "Bryan Joseph, software engineer" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bryan Joseph",
+    description: profile.metaDescription,
+    images: ["/og"],
+  },
 };
+
+/** JSON-LD Person, validated structure; rendered once in the root layout. */
+function personJsonLd() {
+  const skills = getSkills().groups.flatMap((g) => g.skills.map((s) => s.name));
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.fullName,
+    alternateName: profile.shortName,
+    jobTitle: "Software Engineer",
+    url: SITE_URL,
+    email: `mailto:${profile.email}`,
+    sameAs: [profile.github, profile.linkedin],
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "San Diego State University" },
+      { "@type": "HighSchool", name: "Lane Technical College Prep High School" },
+    ],
+    knowsAbout: skills,
+  };
+}
 
 /** Applies the stored theme BEFORE first paint; no flash of wrong theme. */
 const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.classList.add("light")}catch(e){}`;
@@ -70,6 +110,10 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
+        />
       </head>
       <body className="flex min-h-full flex-col">
         <a
@@ -88,6 +132,8 @@ export default function RootLayout({
           <PageTransition>{children}</PageTransition>
         </div>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
