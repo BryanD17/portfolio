@@ -8,17 +8,17 @@ interface StatBlockProps {
 
 export function StatBlock({ stats, className }: StatBlockProps) {
   return (
-    <dl
+    <ul
       className={cn(
-        "grid grid-cols-2 gap-x-8 gap-y-6 border-y border-border py-6 lg:grid-cols-4",
+        "grid list-none grid-cols-2 gap-x-8 gap-y-6 border-y border-border py-6 lg:grid-cols-4",
         className
       )}
     >
       {stats.map((stat) => (
-        <div key={stat.label}>
+        <li key={stat.label}>
           <Metric {...stat} />
-        </div>
+        </li>
       ))}
-    </dl>
+    </ul>
   );
 }

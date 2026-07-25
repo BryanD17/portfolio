@@ -14,7 +14,7 @@
 
   /* lines */
   --border: oklch(0.3 0.009 75);
-  --border-strong: oklch(0.42 0.012 75);
+  --border-strong: oklch(0.51 0.014 75);
 
   /* ink */
   --fg: oklch(0.93 0.006 85);
@@ -37,7 +37,7 @@
   --bg-subtle: oklch(0.945 0.005 85);
 
   --border: oklch(0.87 0.007 85);
-  --border-strong: oklch(0.74 0.01 85);
+  --border-strong: oklch(0.62 0.012 85);
 
   --fg: oklch(0.22 0.012 75);
   --fg-muted: oklch(0.44 0.014 75);
@@ -47,7 +47,7 @@
   --accent-fg: oklch(0.985 0.004 85);
 
   --success: oklch(0.52 0.15 150);
-  --warning: oklch(0.6 0.13 85);
+  --warning: oklch(0.5 0.12 80);
   --danger: oklch(0.55 0.2 25);
 }
 
@@ -192,6 +192,26 @@
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/*
+  Expands the hit area of compact standalone controls to at least 44x44
+  without changing layout. Applied to isolated links and icon buttons;
+  adjacent inline chips keep their natural size (WCAG inline exception)
+  so expanded areas never overlap.
+*/
+.touch-target {
+  position: relative;
+}
+
+.touch-target::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
 }
 
 /* Skill-chip hover: linked project cards light up elsewhere on the page. */

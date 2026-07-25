@@ -50,6 +50,7 @@ export default function StyleguidePage() {
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-16 px-4 py-16 sm:px-8">
       <SectionHeader
+        as="h1"
         index="00"
         label="styleguide"
         title="Design system"
@@ -57,9 +58,9 @@ export default function StyleguidePage() {
       />
 
       <section aria-labelledby="sg-colors" className="flex flex-col gap-4">
-        <h3 id="sg-colors" className="font-mono text-xl text-fg">
+        <h2 id="sg-colors" className="font-mono text-xl text-fg">
           Color tokens (OKLCH)
-        </h3>
+        </h2>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {colorTokens.map((token) => (
             <div key={token} className="flex flex-col gap-2 rounded-md border border-border p-3">
@@ -74,9 +75,9 @@ export default function StyleguidePage() {
       </section>
 
       <section aria-labelledby="sg-type" className="flex flex-col gap-4">
-        <h3 id="sg-type" className="font-mono text-xl text-fg">
+        <h2 id="sg-type" className="font-mono text-xl text-fg">
           Type scale (ratio 1.250)
-        </h3>
+        </h2>
         <div className="flex flex-col gap-3">
           {typeSteps.map((step) => (
             <div
@@ -94,9 +95,9 @@ export default function StyleguidePage() {
       </section>
 
       <section aria-labelledby="sg-primitives" className="flex flex-col gap-8">
-        <h3 id="sg-primitives" className="font-mono text-xl text-fg">
+        <h2 id="sg-primitives" className="font-mono text-xl text-fg">
           Primitives
-        </h3>
+        </h2>
 
         <Terminal title="bryan@portfolio: styleguide">
           <p>
@@ -149,7 +150,7 @@ export default function StyleguidePage() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h4 className="font-mono text-base text-fg">States</h4>
+          <h3 className="font-mono text-base text-fg">States</h3>
           <div className="flex flex-wrap items-center gap-3">
             <Button>Default</Button>
             <Button disabled>Disabled</Button>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <main>
-      <ProjectsSection showFilters archiveDefaultOpen />
+      <ProjectsSection showFilters archiveDefaultOpen headingAs="h1" />
     </main>
   );
 }

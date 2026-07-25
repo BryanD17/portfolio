@@ -29,6 +29,7 @@ export function MotionLab() {
       <main className="mx-auto flex max-w-4xl flex-col gap-20 px-4 py-16 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <SectionHeader
+            as="h1"
             index="00"
             label="motion-lab"
             title="Motion system"
@@ -56,7 +57,7 @@ export function MotionLab() {
 
         <section key={replayKey} className="flex flex-col gap-16">
           <div className="flex flex-col gap-3">
-            <h3 className="font-mono text-lg text-fg">TypeLine + SplitText (boot sync)</h3>
+            <h2 className="font-mono text-lg text-fg">TypeLine + SplitText (boot sync)</h2>
             <Terminal>
               <p>
                 <Prompt />
@@ -73,7 +74,7 @@ export function MotionLab() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h3 className="font-mono text-lg text-fg">CountUp (separators during count, decimals)</h3>
+            <h2 className="font-mono text-lg text-fg">CountUp (separators during count, decimals)</h2>
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               <Metric value="80,000" suffix="+" label="lines of Swift" valueSlot={<CountUp to={80000} />} />
               <Metric value="15,000" suffix="+" label="lines of TS" valueSlot={<CountUp to={15000} />} />
@@ -83,7 +84,7 @@ export function MotionLab() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h3 className="font-mono text-lg text-fg">RevealOnScroll (fires once)</h3>
+            <h2 className="font-mono text-lg text-fg">RevealOnScroll (fires once)</h2>
             <div className="grid gap-3 sm:grid-cols-3">
               {[0, 1, 2].map((i) => (
                 <RevealOnScroll key={i} delay={i * 0.09}>
@@ -96,7 +97,7 @@ export function MotionLab() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h3 className="font-mono text-lg text-fg">MagneticCard (hover pointer only)</h3>
+            <h2 className="font-mono text-lg text-fg">MagneticCard (hover pointer only)</h2>
             <MagneticCard className="p-8">
               <p className="font-mono text-sm text-fg-muted">
                 Move the cursor across this card. Touch devices and reduced motion get a border
@@ -106,7 +107,7 @@ export function MotionLab() {
           </div>
 
           <div className="relative flex flex-col gap-3">
-            <h3 className="font-mono text-lg text-fg">AmbientBackdrop (canvas, pausable)</h3>
+            <h2 className="font-mono text-lg text-fg">AmbientBackdrop (canvas, pausable)</h2>
             <div className="relative h-64 overflow-hidden rounded-lg border border-border">
               <AmbientBackdrop />
               <p className="relative p-6 font-mono text-sm text-fg-muted">
@@ -117,7 +118,7 @@ export function MotionLab() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <h3 className="font-mono text-lg text-fg">ScrollLinked + ParallaxLayer</h3>
+            <h2 className="font-mono text-lg text-fg">ScrollLinked + ParallaxLayer</h2>
             <ScrollLinked y={[40, -40]} opacity={[0.4, 1]}>
               <div className="rounded-md border border-border bg-bg-elevated p-6 font-mono text-sm text-fg-muted">
                 This block maps scroll progress continuously to y and opacity.

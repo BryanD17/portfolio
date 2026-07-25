@@ -59,7 +59,7 @@ export function ProjectCard({ project }: { project: CardProject }) {
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-accent underline-offset-4 hover:underline"
+              className="touch-target flex items-center gap-1 text-accent underline-offset-4 hover:underline"
             >
               repo <ArrowUpRight className="size-3" aria-hidden="true" />
             </a>
@@ -69,7 +69,7 @@ export function ProjectCard({ project }: { project: CardProject }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-accent underline-offset-4 hover:underline"
+              className="touch-target flex items-center gap-1 text-accent underline-offset-4 hover:underline"
             >
               live <ArrowUpRight className="size-3" aria-hidden="true" />
             </a>
@@ -77,7 +77,7 @@ export function ProjectCard({ project }: { project: CardProject }) {
           {project.caseStudySlug ? (
             <Link
               href={`/projects/${project.caseStudySlug}`}
-              className="flex items-center gap-1 text-accent underline-offset-4 hover:underline"
+              className="touch-target flex items-center gap-1 text-accent underline-offset-4 hover:underline"
             >
               case study <ArrowUpRight className="size-3" aria-hidden="true" />
             </Link>

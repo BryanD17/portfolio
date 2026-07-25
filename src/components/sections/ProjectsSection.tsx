@@ -8,6 +8,8 @@ import type { CardProject, CaseStudyCardData } from "@/components/interactive/pr
 interface ProjectsSectionProps {
   showFilters?: boolean;
   archiveDefaultOpen?: boolean;
+  /** h1 on the standalone /projects page; h2 within the home page. */
+  headingAs?: "h1" | "h2";
 }
 
 /**
@@ -19,6 +21,7 @@ interface ProjectsSectionProps {
 export async function ProjectsSection({
   showFilters = false,
   archiveDefaultOpen = false,
+  headingAs = "h2",
 }: ProjectsSectionProps) {
   const sync = await getAllProjects();
   const overrides = getProjectOverrides();
@@ -64,6 +67,7 @@ export async function ProjectsSection({
     <section id="projects" aria-label="Projects" className="scroll-mt-20">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-20 sm:px-8">
         <SectionHeader
+          as={headingAs}
           index="01"
           label="projects"
           title="The work"
@@ -76,6 +80,7 @@ export async function ProjectsSection({
             snapshotNote={sync.source === "snapshot"}
             showFilters={showFilters}
             archiveDefaultOpen={archiveDefaultOpen}
+            bandHeading={headingAs === "h1" ? "h2" : "h3"}
           />
         </Suspense>
       </div>
