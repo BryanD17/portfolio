@@ -150,6 +150,13 @@
     color-scheme: dark;
   }
 
+  /* Smooth anchor scrolling, disabled under reduced motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   html.light {
     color-scheme: light;
   }

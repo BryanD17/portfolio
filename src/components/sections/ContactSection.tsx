@@ -4,6 +4,7 @@ import { getProfile } from "@/content";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/interactive/ContactForm";
+import { CopyEmail } from "@/components/interactive/CopyEmail";
 
 export function ContactSection() {
   const profile = getProfile();
@@ -17,13 +18,14 @@ export function ContactSection() {
         <div className="flex flex-col gap-6">
           <SectionHeader index="05" label="contact" title={profile.contactHeading} />
           <p className="max-w-xl text-base leading-relaxed text-fg-muted">{profile.contactBody}</p>
-          <p className="font-mono text-sm">
+          <p className="flex items-center gap-3 font-mono text-sm">
             <a
               href={`mailto:${profile.email}`}
               className="text-accent underline underline-offset-4"
             >
               {profile.email}
             </a>
+            <CopyEmail email={profile.email} />
           </p>
           <div className="flex flex-wrap gap-4 font-mono text-xs text-fg-muted">
             <a href={profile.github} target="_blank" rel="noopener noreferrer" className="hover:text-fg">

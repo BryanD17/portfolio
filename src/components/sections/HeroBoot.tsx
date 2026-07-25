@@ -9,6 +9,7 @@ import { TypeLine } from "@/components/motion/TypeLine";
 import { SplitText } from "@/components/motion/SplitText";
 import { CountUp } from "@/components/motion/CountUp";
 import { useReducedMotionSafe } from "@/components/motion/useReducedMotionSafe";
+import { TerminalInput } from "@/components/interactive/TerminalInput";
 
 interface BootLine {
   command: string;
@@ -27,6 +28,7 @@ interface HeroBootProps {
   bootLines: BootLine[];
   headline: string;
   stats: Stat[];
+  resumeAvailable?: boolean;
 }
 
 /**
@@ -36,7 +38,7 @@ interface HeroBootProps {
  * after the headline settles, staggered 80ms apart. Under reduced motion
  * everything renders instantly and completely.
  */
-export function HeroBoot({ bootLines, headline, stats }: HeroBootProps) {
+export function HeroBoot({ bootLines, headline, stats, resumeAvailable = false }: HeroBootProps) {
   const { reduced } = useReducedMotionSafe();
   // Index of the line currently typing; lines below it are fully printed.
   const [stage, setStage] = useState(0);
@@ -69,10 +71,9 @@ export function HeroBoot({ bootLines, headline, stats }: HeroBootProps) {
             </div>
           </div>
         ))}
-        <p className={!reduced && stage < bootLines.length ? "invisible" : undefined}>
-          <Prompt />
-          <Cursor />
-        </p>
+        <div className={!reduced && stage < bootLines.length ? "invisible" : undefined}>
+          <TerminalInput resumeAvailable={resumeAvailable} />
+        </div>
       </Terminal>
 
       <SplitText
