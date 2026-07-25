@@ -25,6 +25,7 @@ export const projectOverrides: ProjectOverride[] = [
   {
     name: "WebMARS",
     tier: "case-study",
+    description: "A complete MIPS32 toolchain that runs entirely in your browser.",
     badges: ["LIVE"],
     liveUrl: "https://webmarsimulator.com",
     caseStudySlug: "webmars",
@@ -77,6 +78,12 @@ export const projectOverrides: ProjectOverride[] = [
   },
 
   /* hidden */
+  {
+    name: "portfolio",
+    tier: "hidden",
+    badges: [],
+    hiddenReason: "This site itself; linked from the footer, not listed as a project.",
+  },
   {
     name: "Basic-Guessing-Game",
     tier: "hidden",
