@@ -11,7 +11,7 @@ export const projectOverrides: ProjectOverride[] = [
     name: "StayFit---Healthy-lifestyle-",
     tier: "case-study",
     badges: ["APP STORE", "PRIVATE"],
-    linkTo: "https://getstayfitapp.com",
+    linkTo: "https://apps.apple.com/app/stayfit-ai-health-fitness/id6779075884",
     caseStudySlug: "stayfit",
   },
   {
@@ -34,6 +34,7 @@ export const projectOverrides: ProjectOverride[] = [
     name: "Futures-Trading-Algorithm",
     tier: "case-study",
     badges: ["PRIVATE"],
+    linkTo: "https://github.com/BryanD17/futures-engine-architecture",
     caseStudySlug: "futures-engine",
   },
 
@@ -79,6 +80,13 @@ export const projectOverrides: ProjectOverride[] = [
   },
 
   /* hidden */
+  {
+    name: "futures-engine-architecture",
+    tier: "hidden",
+    badges: [],
+    hiddenReason:
+      "Companion write-up for the futures case study; linked from that card rather than listed as its own project.",
+  },
   {
     name: "BryanD17",
     tier: "hidden",
