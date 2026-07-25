@@ -10,21 +10,23 @@ import type { PrivateRepoEntry } from "@/content/schema";
  * live site). A private repo URL 404s for every visitor and must never be
  * rendered.
  *
- * NOTE: StayFit's App Store listing URL is still owner-pending; until it
- * arrives the card links to the marketing site, which links to the App Store.
  */
 export const privateRepos: PrivateRepoEntry[] = [
   {
+    // Listing URL verified live and cross-checked against the resume PDF
+    // and getstayfitapp.com (both reference the same id).
     name: "StayFit---Healthy-lifestyle-",
-    linkTo: "https://getstayfitapp.com",
+    linkTo: "https://apps.apple.com/app/stayfit-ai-health-fitness/id6779075884",
   },
   {
     name: "stayfit-website",
     linkTo: "https://getstayfitapp.com",
   },
   {
-    // No public product link yet; the card links only to its case study.
-    // Agent 15 owns the visibility decision.
+    // Owner chose option (b): the engine stays private (it trades live
+    // prop-firm accounts); the card links to the public architecture
+    // companion repo.
     name: "Futures-Trading-Algorithm",
+    linkTo: "https://github.com/BryanD17/futures-engine-architecture",
   },
 ];
