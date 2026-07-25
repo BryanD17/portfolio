@@ -130,7 +130,7 @@ export function TerminalInput({ resumeAvailable }: { resumeAvailable: boolean })
           spellCheck={false}
           autoComplete="off"
           placeholder='type "help"'
-          className="w-40 flex-1 bg-transparent font-mono text-sm text-fg caret-[var(--accent)] outline-none placeholder:text-fg-subtle/60"
+          className="min-h-9 w-40 flex-1 bg-transparent font-mono text-sm text-fg caret-[var(--accent)] placeholder:text-fg-subtle/60"
         />
       </p>
     </div>

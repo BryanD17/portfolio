@@ -59,7 +59,7 @@ export function CaseStudyCard({ study }: { study: CaseStudyCardData }) {
           <div className="mt-auto flex flex-wrap gap-4 pt-2 font-mono text-xs">
             <Link
               href={`/projects/${study.slug}`}
-              className="flex items-center gap-1 text-accent underline-offset-4 hover:underline"
+              className="touch-target flex items-center gap-1 text-accent underline-offset-4 hover:underline"
             >
               read the case study <ArrowUpRight className="size-3" aria-hidden="true" />
             </Link>
@@ -68,7 +68,7 @@ export function CaseStudyCard({ study }: { study: CaseStudyCardData }) {
                 href={externalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-accent underline-offset-4 hover:underline"
+                className="touch-target flex items-center gap-1 text-accent underline-offset-4 hover:underline"
               >
                 {externalUrl.replace("https://", "")} <ArrowUpRight className="size-3" aria-hidden="true" />
               </a>
@@ -78,7 +78,7 @@ export function CaseStudyCard({ study }: { study: CaseStudyCardData }) {
                 href={study.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-accent underline-offset-4 hover:underline"
+                className="touch-target flex items-center gap-1 text-accent underline-offset-4 hover:underline"
               >
                 repo <ArrowUpRight className="size-3" aria-hidden="true" />
               </a>

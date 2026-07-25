@@ -84,9 +84,9 @@ export function HeroBoot({ bootLines, headline, stats, resumeAvailable = false }
         className="font-mono text-4xl font-semibold text-fg sm:text-5xl lg:text-6xl"
       />
 
-      <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-y border-border py-6 lg:grid-cols-4">
+      <ul className="grid list-none grid-cols-2 gap-x-8 gap-y-6 border-y border-border py-6 lg:grid-cols-4">
         {stats.map((stat, i) => (
-          <div key={stat.label}>
+          <li key={stat.label}>
             <Metric
               value={stat.text ?? String(stat.value ?? "")}
               suffix={stat.suffix}
@@ -103,9 +103,9 @@ export function HeroBoot({ bootLines, headline, stats, resumeAvailable = false }
                 ) : undefined
               }
             />
-          </div>
+          </li>
         ))}
-      </dl>
+      </ul>
     </div>
   );
 }

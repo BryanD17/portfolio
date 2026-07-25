@@ -19,9 +19,9 @@ interface WallMetric {
 export function MetricWall({ metrics }: { metrics: WallMetric[] }) {
   if (metrics.length === 0) return null;
   return (
-    <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-y border-border py-8 lg:grid-cols-4">
+    <ul className="grid list-none grid-cols-2 gap-x-8 gap-y-6 border-y border-border py-8 lg:grid-cols-4">
       {metrics.map((m, i) => (
-        <div key={m.label}>
+        <li key={m.label}>
           <Metric
             value={m.text ?? String(m.value ?? "")}
             suffix={m.suffix}
@@ -35,8 +35,8 @@ export function MetricWall({ metrics }: { metrics: WallMetric[] }) {
               ) : undefined
             }
           />
-        </div>
+        </li>
       ))}
-    </dl>
+    </ul>
   );
 }

@@ -8,14 +8,14 @@ export function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-8 sm:px-8">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-fg-muted">
-          <a href={`mailto:${profile.email}`} className="transition-colors hover:text-fg">
+          <a href={`mailto:${profile.email}`} className="touch-target transition-colors hover:text-fg">
             {profile.email}
           </a>
           <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-fg"
+            className="touch-target transition-colors hover:text-fg"
           >
             GitHub
           </a>
@@ -23,7 +23,7 @@ export function Footer() {
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-fg"
+            className="touch-target transition-colors hover:text-fg"
           >
             LinkedIn
           </a>
@@ -31,7 +31,7 @@ export function Footer() {
             href="https://github.com/BryanD17/portfolio"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-fg"
+            className="touch-target transition-colors hover:text-fg"
           >
             Source on GitHub
           </a>

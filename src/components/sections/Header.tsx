@@ -73,7 +73,7 @@ export function Header({ githubUrl, linkedinUrl, themeToggle, commandHint }: Hea
         style={{ opacity: reduced ? 1 : backdropOpacity }}
       />
       <div className="relative mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-8">
-        <Link href="/" className="font-mono text-sm font-semibold text-fg">
+        <Link href="/" className="touch-target font-mono text-sm font-semibold text-fg">
           <span className="text-accent">~/</span>bryan-joseph
         </Link>
 
@@ -106,7 +106,7 @@ export function Header({ githubUrl, linkedinUrl, themeToggle, commandHint }: Hea
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub profile"
-            className="p-1.5 text-fg-muted transition-colors hover:text-fg"
+            className="touch-target p-1.5 text-fg-muted transition-colors hover:text-fg"
           >
             <GithubIcon className="size-4" />
           </a>
@@ -115,7 +115,7 @@ export function Header({ githubUrl, linkedinUrl, themeToggle, commandHint }: Hea
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
-            className="p-1.5 text-fg-muted transition-colors hover:text-fg"
+            className="touch-target p-1.5 text-fg-muted transition-colors hover:text-fg"
           >
             <LinkedinIcon className="size-4" />
           </a>

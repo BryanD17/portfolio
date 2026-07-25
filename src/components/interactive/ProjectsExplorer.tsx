@@ -19,6 +19,8 @@ interface ProjectsExplorerProps {
   /** Full explorer with filters (/projects) vs compact home section. */
   showFilters: boolean;
   archiveDefaultOpen: boolean;
+  /** h2 on /projects (under its h1), h3 on the home page (under the h2). */
+  bandHeading?: "h2" | "h3";
 }
 
 type SortKey = "updated" | "stars" | "oldest" | "az";
@@ -29,6 +31,7 @@ export function ProjectsExplorer({
   snapshotNote,
   showFilters,
   archiveDefaultOpen,
+  bandHeading: Band = "h3",
 }: ProjectsExplorerProps) {
   const { reduced } = useReducedMotionSafe();
   const router = useRouter();
@@ -120,9 +123,9 @@ export function ProjectsExplorer({
 
       {/* CASE STUDIES: the four flagships, content order. */}
       <div className="flex flex-col gap-4">
-        <h3 className="font-mono text-sm uppercase tracking-widest text-fg-subtle">
+        <Band className="font-mono text-sm uppercase tracking-widest text-fg-subtle">
           case studies
-        </h3>
+        </Band>
         <div className="grid gap-5 md:grid-cols-2">
           {visibleCaseStudies.map((study, i) => (
             <RevealOnScroll key={study.slug} delay={reduced ? 0 : i * STAGGER.loose}>
@@ -196,7 +199,7 @@ export function ProjectsExplorer({
 
       {/* FEATURED */}
       <div className="flex flex-col gap-4">
-        <h3 className="font-mono text-sm uppercase tracking-widest text-fg-subtle">featured</h3>
+        <Band className="font-mono text-sm uppercase tracking-widest text-fg-subtle">featured</Band>
         {featured.length === 0 ? (
           <EmptyState onClear={clearFilters} show={anyFilterActive} />
         ) : (
@@ -252,7 +255,7 @@ export function ProjectsExplorer({
                         href={p.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono text-xs text-accent underline-offset-4 hover:underline"
+                        className="touch-target font-mono text-xs text-accent underline-offset-4 hover:underline"
                       >
                         repo
                       </a>
