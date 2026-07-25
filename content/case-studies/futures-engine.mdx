@@ -1,0 +1,67 @@
+---
+slug: futures-engine
+title: Futures Trading Engine & Risk Dashboard
+tagline: "Event-driven trading infrastructure with Monte Carlo risk modeling."
+role: Solo developer
+stack:
+  - Java 21
+  - Spring Boot
+  - React
+  - TypeScript
+  - WebSockets
+status: Private repository
+repoVisibility: private
+metrics:
+  - value: 8
+    label: futures instruments
+  - value: 10000
+    suffix: "+"
+    label: Monte Carlo paths
+  - value: 100
+    suffix: "%"
+    label: of orders risk-checked
+  - text: Java 21
+    label: concurrent event bus
+outcomes:
+  - Decoupled event-driven architecture across data, strategy, risk, execution
+  - 100% order coverage by the risk pipeline
+  - Full backtesting and Monte Carlo evaluation harness
+links: []
+gallery: []
+order: 4
+---
+
+## The problem
+
+A trading strategy that looks profitable in a spreadsheet tells you almost
+nothing. What matters is how it behaves under concurrent tick streams, how it
+fails when a rule is breached, and what the distribution of outcomes looks
+like, not the single path history happened to take.
+
+## What I built
+
+An event-driven, multithreaded trading engine in Java 21 with a bounded
+concurrent event bus and decoupled data, strategy, risk, and execution
+modules, processing high-frequency tick streams across 8 futures instruments.
+
+## The hard parts
+
+### Risk as a hard gate, not a suggestion
+
+I implemented a risk pipeline enforcing daily-loss, trailing-drawdown, and
+contract limits on 100% of orders, with automated flatten-by-time and
+kill-switch logic. The guarantee is structural: an order cannot reach
+execution without clearing risk first.
+
+### Measuring what actually happens
+
+I built a Monte Carlo simulator running 10,000+ paths with block
+bootstrapping, plus a historical backtesting harness measuring win rate,
+R-multiples, and drawdown, so strategy evaluation is a distribution, not an
+anecdote.
+
+### Seeing it live
+
+Live PnL streams over WebSockets to a Spring Boot + React dashboard, so the
+engine's state is observable while it runs rather than reconstructed from
+logs afterward.
