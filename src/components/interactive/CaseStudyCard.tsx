@@ -18,7 +18,7 @@ export function CaseStudyCard({ study }: { study: CaseStudyCardData }) {
   const externalUrl = study.liveUrl ?? study.productUrl;
   return (
     <MagneticCard className="h-full">
-      <div className="flex h-full flex-col">
+      <div data-proj={study.slug} className="flex h-full flex-col rounded-lg">
         {/* Cover: slow Ken-Burns drift (scale 1 to 1.04) across the card's
             scroll range. Applies to real cover images when the owner
             supplies them; until then the terminal motif is the cover. */}

@@ -18,7 +18,7 @@ const BADGE_TONES: Record<string, "accent" | "success" | "warning" | "danger" | 
 export function ProjectCard({ project }: { project: CardProject }) {
   return (
     <MagneticCard className="h-full">
-      <div className="flex h-full flex-col gap-3 p-5">
+      <div data-proj={project.name} className="flex h-full flex-col gap-3 rounded-lg p-5">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="font-mono text-base font-semibold text-fg">{project.name}</h3>
           {project.badges.map((b) => (

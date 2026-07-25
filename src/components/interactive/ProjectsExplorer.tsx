@@ -87,6 +87,15 @@ export function ProjectsExplorer({
   const archive = filtered.filter((p) => p.tier === "archive");
   const anyFilterActive = q !== "" || lang !== "all" || origin !== "all";
 
+  // The text search also narrows the case-study band (name, tagline, stack),
+  // so skill chips linking to /projects?q=Swift surface the right flagship.
+  const needle = q.trim().toLowerCase();
+  const visibleCaseStudies = needle
+    ? caseStudies.filter((s) =>
+        `${s.title} ${s.tagline} ${s.slug} ${s.stack.join(" ")}`.toLowerCase().includes(needle)
+      )
+    : caseStudies;
+
   const clearFilters = () => {
     router.replace(pathname, { scroll: false });
   };
@@ -115,11 +124,14 @@ export function ProjectsExplorer({
           case studies
         </h3>
         <div className="grid gap-5 md:grid-cols-2">
-          {caseStudies.map((study, i) => (
+          {visibleCaseStudies.map((study, i) => (
             <RevealOnScroll key={study.slug} delay={reduced ? 0 : i * STAGGER.loose}>
               <CaseStudyCard study={study} />
             </RevealOnScroll>
           ))}
+          {visibleCaseStudies.length === 0 ? (
+            <p className="font-mono text-sm text-fg-muted">No case studies match this search.</p>
+          ) : null}
         </div>
       </div>
 
