@@ -33,14 +33,14 @@ export function ParallaxLayer({ travel = 16, className, children }: ParallaxLaye
 
   if (reduced) {
     return (
-      <div ref={ref} className={className}>
+      <div ref={ref} data-reveal className={className}>
         {children}
       </div>
     );
   }
 
   return (
-    <motion.div ref={ref} className={className} style={{ y }}>
+    <motion.div ref={ref} data-reveal className={className} style={{ y }}>
       {children}
     </motion.div>
   );
