@@ -76,12 +76,14 @@ export async function Hero() {
           {/* Layer 4: headshot with subtle parallax, max 16px travel. */}
           <ParallaxLayer travel={16} className="hidden lg:block">
             <div className="overflow-hidden rounded-lg border border-border">
+              {/* No priority: the measured LCP element is the H1, and the
+                  image is display:none below lg, where a priority preload
+                  would tax the critical chain for nothing. */}
               <Image
                 src="/bryan-joseph@2x.webp"
                 alt="Bryan Joseph"
                 width={800}
                 height={800}
-                priority
                 sizes="280px"
                 className="h-auto w-full"
               />
