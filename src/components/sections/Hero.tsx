@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import { getProfile } from "@/content";
@@ -41,6 +43,9 @@ export async function Hero() {
               bootLines={profile.heroBootLines}
               headline={profile.headline}
               stats={profile.heroStats}
+              resumeAvailable={fs.existsSync(
+                path.join(process.cwd(), "public", "Bryan-Joseph-Resume.pdf")
+              )}
             />
 
             <p className="max-w-2xl text-base text-fg-muted">{profile.subHeadline}</p>

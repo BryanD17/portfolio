@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 import { motion, useScroll, useTransform } from "motion/react";
@@ -40,6 +41,29 @@ export function Header({ githubUrl, linkedinUrl, themeToggle, commandHint }: Hea
   const { scrollY } = useScroll();
   const backdropOpacity = useTransform(scrollY, [0, 120], [0, 1]);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
+
+  // Scroll-spy: highlight the nav item for the section in view (home only).
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const ids = ["projects", "experience", "skills", "contact"];
+    const observer = new IntersectionObserver(
+      (observed) => {
+        const visible = observed
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        const first = visible[0];
+        if (first) setActiveSection(first.target.id);
+      },
+      { rootMargin: "-30% 0px -55% 0px" }
+    );
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-50">
@@ -54,15 +78,24 @@ export function Header({ githubUrl, linkedinUrl, themeToggle, commandHint }: Hea
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-mono text-xs text-fg-muted transition-colors hover:text-fg"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV.map((item) => {
+            const isActive =
+              pathname === "/" && activeSection !== "" && item.href === `/#${activeSection}`;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive ? "true" : undefined}
+                className={
+                  isActive
+                    ? "font-mono text-xs text-accent"
+                    : "font-mono text-xs text-fg-muted transition-colors hover:text-fg"
+                }
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
